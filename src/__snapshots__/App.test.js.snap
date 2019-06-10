@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`render component without correct displayName 1`] = `
+<div>
+  <Connect(MyComponent)
+    body={<Memo(ConnectFunction) />}
+  />
+</div>
+`;
+
 exports[`renders welcome message 1`] = `
 <div>
   <Connect(MyComponent) />

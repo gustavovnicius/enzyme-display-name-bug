@@ -20,3 +20,27 @@ it('renders welcome message', () => {
 
   expect(wrapper).toMatchSnapshot();
 });
+
+it('render component without correct displayName', () => {
+  const mapStateToProps = () => ({});
+  const Component = (body) => <div>{body}</div>;
+  const Body = () => <div>Hello there</div>;
+
+  Component.displayName = 'MyComponent';
+  Body.displayName = 'Body';
+
+  const MemoBody = React.memo(Body);
+
+  const Connected = connect(mapStateToProps)(Component);
+  const ConnectedBody = connect(mapStateToProps)(MemoBody)
+
+  const Wrapper = () => (
+    <div>
+      <Connected body={<ConnectedBody />} />
+    </div>
+  );
+
+  const wrapper = shallow(<Wrapper />);
+
+  expect(wrapper).toMatchSnapshot();
+});
